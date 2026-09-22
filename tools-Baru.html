@@ -1080,35 +1080,6 @@ document.addEventListener('DOMContentLoaded', () => { if ($tb('tbBsX')) tbBoxSha
 /* ============================================================
    18. QR CODE GENERATOR (qrcodejs davidshimjs)
    ============================================================ */
-function tbQR() {
-  const text = $tb('tbQrInput').value.trim();
-  const wrap = $tb('tbQrWrap');
-  const out = $tb('tbQrOut');
-  const btn = $tb('tbQrBtn');
-  if (!text) { tbToast('❌ Isi teks/link dulu'); return; }
-  if (!window.QRCode) {
-    out.innerHTML = '❌ Library QR belum load. Cek folder <code>lib/qrcode.min.js</code>.';
-    return;
-  }
-  btn.disabled = true;
-  out.innerHTML = '<span class="tb-loading"></span> Membuat QR...';
-  try {
-    wrap.style.display = 'flex';
-    wrap.innerHTML = '';
-    new window.QRCode(wrap, {
-      text: text,
-      width: 220,
-      height: 220,
-      colorDark: '#000000',
-      colorLight: '#ffffff',
-      correctLevel: window.QRCode.CorrectLevel.H
-    });
-    out.innerHTML = `✅ QR untuk: ${text}<br><button class="tb-btn small" onclick="tbDownloadQr()">⬇️ Download PNG</button>`;
-  } catch (e) {
-    out.textContent = '❌ Error: ' + e.message;
-  }
-  btn.disabled = false;
-}
 function tbDownloadQr() {
   const canvas = $tb('tbQrWrap').querySelector('canvas');
   const img = $tb('tbQrWrap').querySelector('img');
@@ -1122,7 +1093,36 @@ function tbDownloadQr() {
 /* ============================================================
    19. BMI CALCULATOR
    ============================================================ */
-function tbBMI() {
+function tbQR() {
+  const text = $tb('tbQrInput').value.trim();
+  const wrap = $tb('tbQrWrap');
+  const out = $tb('tbQrOut');
+  const btn = $tb('tbQrBtn');
+  if (!text) { tbToast('❌ Isi teks/link dulu'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Membuat QR...';
+  try {
+    wrap.style.display = 'flex';
+    wrap.innerHTML = '';
+    const url = 'https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=' + encodeURIComponent(text);
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'QR Code';
+    img.style.borderRadius = '8px';
+    img.onload = () => {
+      out.innerHTML = `✅ QR untuk: ${text}<br><button class="tb-btn small" onclick="tbDownloadQr()">⬇️ Download PNG</button>`;
+    };
+    img.onerror = () => {
+      out.textContent = '❌ Gagal load QR. Cek koneksi internet.';
+    };
+    wrap.appendChild(img);
+  } catch (e) {
+    out.textContent = '❌ Error: ' + e.message;
+  }
+  btn.disabled = false;
+}
+  function tbBMI() {
   const w = parseFloat($tb('tbBmiW').value);
   const h = parseFloat($tb('tbBmiH').value) / 100;
   const out = $tb('tbBmiOut');
