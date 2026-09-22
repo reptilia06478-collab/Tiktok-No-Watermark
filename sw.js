@@ -1,9 +1,21 @@
 /* Tiv Downloader — Service Worker */
-const CACHE_NAME = 'tiv-v10';
+const CACHE_NAME = 'tiv-v11';
+
 const ASSETS = [
   './',
   './index.html',
-  './manifest.json'
+  './tools.html',
+  './tools-Baru.html',
+  './games.html',
+  './manifest.json',
+  './lib/marked.min.js',
+  './lib/qrcode.min.js',
+  './lib/pdf-lib.min.js',
+  './lib/pdf.min.js',
+  './lib/pdf.worker.min.js',
+  './lib/ffmpeg.min.js',
+  './lib/ffmpeg-core.js',
+  './lib/ffmpeg-core.wasm'
 ];
 
 self.addEventListener('install', (e) => {
