@@ -1,5 +1,5 @@
 /* Tiv Downloader — Service Worker */
-const CACHE_NAME = 'tiv-v9';
+const CACHE_NAME = 'tiv-v10';
 const ASSETS = [
   './',
   './index.html',
