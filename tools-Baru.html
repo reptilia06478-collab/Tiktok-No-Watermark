@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#050816">
+<meta name="description" content="Tiv Tools Baru — 23 tools online legal & berguna: media, text, design, utility. Full client-side, tanpa server.">
+<meta name="author" content="PANN">
+<title>Tiv Tools Baru — 23 Tools Online Legal</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%234f7cff'/><text x='50' y='70' font-size='56' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>T</text></svg>">
+<link rel="manifest" href="manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== TOOLS-BARU SPECIFIC STYLES ===== */
+  .tb-hero {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 60px 20px 30px;
+    text-align: center;
+  }
+  .tb-hero .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border: 1px solid rgba(91,125,255,.3);
+    border-radius: 999px;
+    background: rgba(79,124,255,.08);
+    color: #a9b9e8;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+  }
+  .tb-hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -2.5px;
+    margin: 18px 0 14px;
+  }
+  .tb-hero h1 span {
+    background: linear-gradient(90deg, #4f7cff, #d946ef);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .tb-hero p {
+    color: var(--text-muted);
+    font-size: 15px;
+    max-width: 680px;
+    margin: 0 auto 24px;
+    line-height: 1.8;
+  }
+  .tb-filter {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+  }
+  .tb-filter-btn {
+    padding: 10px 18px;
+    border-radius: 14px;
+    background: rgba(10,18,40,.78);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.25s;
+  }
+  .tb-filter-btn:hover { border-color: var(--blue); color: var(--text); }
+  .tb-filter-btn.active {
+    background: var(--blue-grad);
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 8px 24px rgba(79,124,255,.3);
+  }
+  .tb-grid {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 20px 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  @media (max-width: 980px) { .tb-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px) { .tb-grid { grid-template-columns: 1fr; padding: 0 14px 100px; } }
+
+  .tb-card {
+    background: linear-gradient(145deg, rgba(14,25,52,.85), rgba(7,14,31,.8));
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: 0 16px 50px rgba(0,0,0,.18);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .tb-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--blue-grad);
+    opacity: 0.6;
+  }
+  .tb-card:hover {
+    border-color: var(--border-strong);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(79,124,255,.15);
+  }
+  .tb-icon {
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(145deg, rgba(79,124,255,.22), rgba(236,72,153,.12));
+    border: 1px solid var(--border);
+    font-size: 22px;
+  }
+  .tb-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin: 4px 0 2px;
+    letter-spacing: -0.3px;
+  }
+  .tb-card p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .tb-card input[type="text"],
+  .tb-card input[type="number"],
+  .tb-card input[type="color"],
+  .tb-card textarea,
+  .tb-card select {
+    width: 100%;
+    background: #071127;
+    border: 1px solid var(--border);
+    color: #fff;
+    border-radius: 12px;
+    padding: 11px 13px;
+    margin: 3px 0;
+    outline: none;
+    font-family: inherit;
+    font-size: 13px;
+    transition: border-color 0.2s;
+  }
+  .tb-card input:focus, .tb-card textarea:focus, .tb-card select:focus { border-color: var(--blue); }
+  .tb-card textarea {
+    min-height: 80px;
+    resize: vertical;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+  }
+  .tb-card input[type="color"] { height: 48px; padding: 4px; cursor: pointer; }
+  .tb-card input[type="file"] {
+    width: 100%;
+    background: #071127;
+    border: 1px dashed var(--border);
+    color: #fff;
+    border-radius: 12px;
+    padding: 10px;
+    margin: 3px 0;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  .tb-row { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tb-row > * { flex: 1; min-width: 70px; }
+
+  .tb-btn {
+    border: 0;
+    border-radius: 12px;
+    padding: 10px 14px;
+    background: var(--blue-grad);
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 12px;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  .tb-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(79,124,255,.4); }
+  .tb-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .tb-btn.secondary { background: rgba(59,91,255,.12); border: 1px solid var(--border); color: var(--text); }
+  .tb-btn.small { padding: 7px 10px; font-size: 11px; }
+
+  .tb-out {
+    margin-top: 6px;
+    padding: 10px 12px;
+    background: rgba(3,8,22,.5);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    color: #a9b7d4;
+    font-size: 12px;
+    word-break: break-word;
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 36px;
+    max-height: 220px;
+    overflow-y: auto;
+  }
+  .tb-out:empty { display: none; }
+  .tb-out img { max-width: 100%; border-radius: 8px; margin-top: 6px; }
+  .tb-out video, .tb-out audio { width: 100%; border-radius: 8px; margin-top: 6px; }
+
+  .tb-loading {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(255,255,255,.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    vertical-align: middle;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .tb-qr-wrap {
+    display: flex;
+    justify-content: center;
+    padding: 12px;
+    background: #fff;
+    border-radius: 12px;
+    margin-top: 6px;
+  }
+  .tb-qr-wrap canvas { border-radius: 8px; }
+
+  .tb-palette-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
+  .tb-swatch {
+    aspect-ratio: 1/1; border-radius: 10px; border: 1px solid var(--border);
+    cursor: pointer; transition: transform 0.2s;
+  }
+  .tb-swatch:hover { transform: scale(1.08); }
+
+  .tb-timer-display {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 34px; font-weight: 700; text-align: center;
+    color: var(--blue-light); letter-spacing: 2px; padding: 6px 0;
+  }
+
+  .tb-strength-bar {
+    height: 6px; border-radius: 3px; background: rgba(255,255,255,.1);
+    overflow: hidden; margin-top: 6px;
+  }
+  .tb-strength-fill {
+    height: 100%; width: 0%; transition: width 0.3s, background 0.3s; border-radius: 3px;
+  }
+
+  .tb-md-preview {
+    background: rgba(3,8,22,.5); border: 1px solid var(--border);
+    border-radius: 12px; padding: 14px; font-size: 13px; line-height: 1.7;
+    max-height: 320px; overflow-y: auto; color: #d8dfff;
+  }
+  .tb-md-preview h1, .tb-md-preview h2, .tb-md-preview h3 {
+    font-family: 'Space Grotesk', sans-serif; margin: 10px 0 6px; color: #fff;
+  }
+  .tb-md-preview code {
+    background: rgba(79,124,255,.15); padding: 2px 6px; border-radius: 4px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px;
+  }
+  .tb-md-preview pre {
+    background: rgba(0,0,0,.4); padding: 10px; border-radius: 8px; overflow-x: auto;
+  }
+  .tb-md-preview blockquote {
+    border-left: 3px solid var(--blue); padding-left: 10px;
+    color: var(--text-muted); margin: 8px 0;
+  }
+  .tb-md-preview a { color: #93b4ff; }
+  .tb-md-preview ul, .tb-md-preview ol { padding-left: 20px; }
+
+  .tb-badge {
+    display: inline-block; padding: 3px 9px; border-radius: 999px;
+    background: rgba(79,124,255,.12); border: 1px solid var(--border);
+    color: #9eb7ff; font-size: 9px; font-weight: 800;
+    letter-spacing: 1px; text-transform: uppercase; margin-bottom: 2px;
+  }
+
+  .tb-note {
+    max-width: 1180px; margin: 0 auto 24px; padding: 16px 20px;
+    background: rgba(79,124,255,.08); border: 1px solid rgba(79,124,255,.22);
+    border-radius: 16px; font-size: 12px; color: #a9b9e8;
+    line-height: 1.7; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .tb-note strong { color: #dce6ff; }
+
+  .tb-hidden { display: none !important; }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">⬇</div>
+      <div class="nav-logo-text">Tiv<span class="red">.</span></div>
+    </a>
+    <div class="desktop-nav-links">
+      <a href="index.html" class="desktop-nav-link">⌂ <span>Beranda</span></a>
+      <a href="games.html" class="desktop-nav-link">◈ <span>Games</span></a>
+      <a href="tools.html" class="desktop-nav-link">🛠️ <span>Tools</span></a>
+      <a href="tools-Baru.html" class="desktop-nav-link active">🧰 <span>Tools Baru</span></a>
+    </div>
+    <div class="nav-actions">
+      <button class="nav-icon-btn" id="themeBtn" onclick="toggleTheme()" title="Ganti tema">🌙</button>
+      <button class="nav-icon-btn" onclick="history.back()" title="Kembali">←</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="tb-hero">
+  <div class="eyebrow">🧰 23 TOOLS BARU · LEGAL · CLIENT-SIDE</div>
+  <h1>Tools baru yang <span>berguna.</span></h1>
+  <p>23 alat tambahan yang berjalan langsung di browser kamu. Tanpa server, tanpa upload, tanpa login. Semua proses 100% di perangkat kamu.</p>
+  <div class="tb-filter" id="tbFilterBar">
+    <button class="tb-filter-btn active" data-cat="all" onclick="tbFilter('all')">Semua (23)</button>
+    <button class="tb-filter-btn" data-cat="media" onclick="tbFilter('media')">🎬 Media (8)</button>
+    <button class="tb-filter-btn" data-cat="text" onclick="tbFilter('text')">📝 Text & Data (6)</button>
+    <button class="tb-filter-btn" data-cat="design" onclick="tbFilter('design')">🎨 Design (4)</button>
+    <button class="tb-filter-btn" data-cat="utility" onclick="tbFilter('utility')">🧮 Utility (5)</button>
+  </div>
+</section>
+
+<div class="tb-note">
+  <span style="font-size:20px;">🔒</span>
+  <div>
+    <strong>Privasi & Legalitas:</strong> Semua tool di halaman ini berjalan sepenuhnya di browser kamu (client-side). Tidak ada file, teks, atau data yang dikirim ke server mana pun. Tool media memakai library open-source legal (<em>ffmpeg.wasm, pdf-lib, qrcode.js</em>) yang di-load dari CDN publik.
+  </div>
+</div>
+
+<!-- TOOLS GRID -->
+<div class="tb-grid" id="tbGrid">
+
+  <!-- ===== 1. VIDEO TRIMMER ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">✂️</div>
+    <span class="tb-badge">Media</span>
+    <h3>1. Video Trimmer</h3>
+    <p>Potong durasi video (MP4/WebM) langsung di browser pakai ffmpeg.wasm.</p>
+    <input type="file" id="tbTrimFile" accept="video/*">
+    <div class="tb-row">
+      <input type="number" id="tbTrimStart" placeholder="Mulai (detik)" value="0" min="0" step="0.1">
+      <input type="number" id="tbTrimEnd" placeholder="Akhir (detik)" value="5" min="0" step="0.1">
+    </div>
+    <button class="tb-btn" id="tbTrimBtn" onclick="tbTrim()">✂️ Potong Video</button>
+    <div class="tb-out" id="tbTrimOut"></div>
+  </div>
+
+  <!-- ===== 2. VIDEO → GIF ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">🎞️</div>
+    <span class="tb-badge">Media</span>
+    <h3>2. Video → GIF</h3>
+    <p>Ubah video jadi GIF animasi. Atur FPS dan ukuran.</p>
+    <input type="file" id="tbGifFile" accept="video/*">
+    <div class="tb-row">
+      <input type="number" id="tbGifFps" placeholder="FPS" value="10" min="1" max="30">
+      <input type="number" id="tbGifWidth" placeholder="Lebar px" value="320" min="50" max="800">
+    </div>
+    <button class="tb-btn" id="tbGifBtn" onclick="tbVideoToGif()">🎞️ Buat GIF</button>
+    <div class="tb-out" id="tbGifOut"></div>
+  </div>
+
+  <!-- ===== 3. AUDIO CUTTER ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">🎵</div>
+    <span class="tb-badge">Media</span>
+    <h3>3. Audio Cutter</h3>
+    <p>Potong file audio (MP3/WAV/OGG) sesuai rentang waktu.</p>
+    <input type="file" id="tbAudioFile" accept="audio/*">
+    <div class="tb-row">
+      <input type="number" id="tbAudioStart" placeholder="Mulai (detik)" value="0" min="0" step="0.1">
+      <input type="number" id="tbAudioEnd" placeholder="Akhir (detik)" value="10" min="0" step="0.1">
+    </div>
+    <button class="tb-btn" id="tbAudioBtn" onclick="tbAudioCut()">✂️ Potong Audio</button>
+    <div class="tb-out" id="tbAudioOut"></div>
+  </div>
+
+  <!-- ===== 4. IMAGE COMPRESSOR ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">🖼️</div>
+    <span class="tb-badge">Media</span>
+    <h3>4. Image Compressor</h3>
+    <p>Kompres gambar (JPG/PNG/WebP) tanpa upload ke server.</p>
+    <input type="file" id="tbCompFile" accept="image/*">
+    <div class="tb-row">
+      <input type="number" id="tbCompQuality" placeholder="Kualitas (0-1)" value="0.7" min="0.1" max="1" step="0.1">
+    </div>
+    <button class="tb-btn" onclick="tbCompress()">🗜️ Kompres</button>
+    <div class="tb-out" id="tbCompOut"></div>
+  </div>
+
+  <!-- ===== 5. IMAGE RESIZER ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">📐</div>
+    <span class="tb-badge">Media</span>
+    <h3>5. Image Resizer</h3>
+    <p>Ubah ukuran gambar sesuai lebar & tinggi yang diinginkan.</p>
+    <input type="file" id="tbResizeFile" accept="image/*">
+    <div class="tb-row">
+      <input type="number" id="tbResizeW" placeholder="Lebar px" value="800" min="10">
+      <input type="number" id="tbResizeH" placeholder="Tinggi px" value="600" min="10">
+    </div>
+    <button class="tb-btn" onclick="tbResize()">📐 Resize</button>
+    <div class="tb-out" id="tbResizeOut"></div>
+  </div>
+
+  <!-- ===== 6. IMAGE → PDF ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">📄</div>
+    <span class="tb-badge">Media</span>
+    <h3>6. Image → PDF</h3>
+    <p>Gabungkan satu atau banyak gambar jadi file PDF.</p>
+    <input type="file" id="tbImg2PdfFile" accept="image/*" multiple>
+    <button class="tb-btn" id="tbImg2PdfBtn" onclick="tbImg2Pdf()">📄 Buat PDF</button>
+    <div class="tb-out" id="tbImg2PdfOut"></div>
+  </div>
+
+  <!-- ===== 7. PDF → IMAGE ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">🖼️</div>
+    <span class="tb-badge">Media</span>
+    <h3>7. PDF → Image</h3>
+    <p>Konversi setiap halaman PDF jadi gambar PNG.</p>
+    <input type="file" id="tbPdf2ImgFile" accept="application/pdf">
+    <button class="tb-btn" id="tbPdf2ImgBtn" onclick="tbPdf2Img()">🖼️ Konversi</button>
+    <div class="tb-out" id="tbPdf2ImgOut"></div>
+  </div>
+
+  <!-- ===== 8. SCREEN RECORDER ===== -->
+  <div class="tb-card" data-cat="media">
+    <div class="tb-icon">🎥</div>
+    <span class="tb-badge">Media</span>
+    <h3>8. Screen Recorder</h3>
+    <p>Rekam layar browser (dan suara) langsung dari halaman ini.</p>
+    <button class="tb-btn" id="tbRecBtn" onclick="tbToggleRecord()">🔴 Mulai Rekam</button>
+    <div class="tb-out" id="tbRecOut"></div>
+  </div>
+
+  <!-- ===== 9. TEXT TO SPEECH ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">🔊</div>
+    <span class="tb-badge">Text</span>
+    <h3>9. Text to Speech</h3>
+    <p>Ubah teks jadi suara pakai Web Speech API bawaan browser.</p>
+    <textarea id="tbTtsText" placeholder="Ketik teks yang mau dibacakan...">Halo, ini Tiv Tools Baru!</textarea>
+    <div class="tb-row">
+      <select id="tbTtsVoice"></select>
+      <input type="number" id="tbTtsRate" placeholder="Rate" value="1" min="0.5" max="2" step="0.1">
+    </div>
+    <div class="tb-row">
+      <button class="tb-btn" onclick="tbTTS()">🔊 Baca</button>
+      <button class="tb-btn secondary" onclick="tbStopTTS()">⏹ Stop</button>
+    </div>
+    <div class="tb-out" id="tbTtsOut"></div>
+  </div>
+
+  <!-- ===== 10. SPEECH TO TEXT ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">🎤</div>
+    <span class="tb-badge">Text</span>
+    <h3>10. Speech to Text</h3>
+    <p>Rekam suara dari mikrofon, ubah jadi teks (butuh browser Chrome/Edge).</p>
+    <button class="tb-btn" id="tbSttBtn" onclick="tbToggleSTT()">🎤 Mulai Rekam</button>
+    <div class="tb-out" id="tbSttOut">Tekan tombol untuk mulai...</div>
+  </div>
+
+  <!-- ===== 11. MARKDOWN PREVIEW ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">📖</div>
+    <span class="tb-badge">Text</span>
+    <h3>11. Markdown Preview</h3>
+    <p>Tulis Markdown, lihat hasil render-nya langsung.</p>
+    <textarea id="tbMdInput" placeholder="# Judul&#10;&#10;**Bold** dan *italic*."># Halo Tiv!&#10;&#10;Ini **Markdown** preview.&#10;&#10;- Item 1&#10;- Item 2&#10;&#10;> Quote keren.</textarea>
+    <div class="tb-md-preview" id="tbMdPreview"></div>
+  </div>
+
+  <!-- ===== 12. JSON FORMATTER ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">{ }</div>
+    <span class="tb-badge">Text</span>
+    <h3>12. JSON Formatter</h3>
+    <p>Rapikan JSON agar mudah dibaca (pretty-print).</p>
+    <textarea id="tbJsonInput" placeholder='{"nama":"TIV","versi":10}'></textarea>
+    <button class="tb-btn" onclick="tbJsonFmt()">✨ Format JSON</button>
+    <div class="tb-out" id="tbJsonOut"></div>
+  </div>
+
+  <!-- ===== 13. BASE64 ENCODER ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">🔐</div>
+    <span class="tb-badge">Text</span>
+    <h3>13. Base64 Encoder/Decoder</h3>
+    <p>Encode atau decode teks ke/dari Base64.</p>
+    <textarea id="tbB64Input" placeholder="Teks atau Base64..."></textarea>
+    <div class="tb-row">
+      <button class="tb-btn" onclick="tbB64Encode()">Encode</button>
+      <button class="tb-btn secondary" onclick="tbB64Decode()">Decode</button>
+    </div>
+    <div class="tb-out" id="tbB64Out"></div>
+  </div>
+
+  <!-- ===== 14. CASE CONVERTER ===== -->
+  <div class="tb-card" data-cat="text">
+    <div class="tb-icon">Aa</div>
+    <span class="tb-badge">Text</span>
+    <h3>14. Case Converter</h3>
+    <p>Ubah huruf jadi UPPER, lower, Title Case, atau Sentence case.</p>
+    <textarea id="tbCaseInput" placeholder="ketik teks di sini..."></textarea>
+    <div class="tb-row">
+      <button class="tb-btn small" onclick="tbCase('upper')">UPPER</button>
+      <button class="tb-btn small secondary" onclick="tbCase('lower')">lower</button>
+      <button class="tb-btn small secondary" onclick="tbCase('title')">Title</button>
+      <button class="tb-btn small secondary" onclick="tbCase('sentence')">Sentence</button>
+    </div>
+    <div class="tb-out" id="tbCaseOut"></div>
+  </div>
+
+  <!-- ===== 15. COLOR PALETTE GENERATOR ===== -->
+  <div class="tb-card" data-cat="design">
+    <div class="tb-icon">🎨</div>
+    <span class="tb-badge">Design</span>
+    <h3>15. Color Palette Generator</h3>
+    <p>Bikin palet 5 warna dari 1 warna dasar (monokromatik).</p>
+    <input type="color" id="tbPaletteBase" value="#4f7cff" oninput="tbPalette()">
+    <div class="tb-palette-grid" id="tbPaletteGrid"></div>
+    <div class="tb-out" id="tbPaletteOut"></div>
+  </div>
+
+  <!-- ===== 16. GRADIENT GENERATOR ===== -->
+  <div class="tb-card" data-cat="design">
+    <div class="tb-icon">🌈</div>
+    <span class="tb-badge">Design</span>
+    <h3>16. Gradient Generator</h3>
+    <p>Bikin CSS gradient siap pakai. Pilih 2 warna + arah.</p>
+    <div class="tb-row">
+      <input type="color" id="tbGradA" value="#4f7cff" oninput="tbGradient()">
+      <input type="color" id="tbGradB" value="#d946ef" oninput="tbGradient()">
+    </div>
+    <select id="tbGradDir" onchange="tbGradient()">
+      <option value="to right">→ Kanan</option>
+      <option value="to bottom">↓ Bawah</option>
+      <option value="to bottom right">↘ Diagonal</option>
+      <option value="135deg">135°</option>
+      <option value="45deg">45°</option>
+    </select>
+    <div id="tbGradPreview" style="height:60px;border-radius:12px;border:1px solid var(--border);margin-top:6px;"></div>
+    <div class="tb-out" id="tbGradOut"></div>
+  </div>
+
+  <!-- ===== 17. BOX SHADOW GENERATOR ===== -->
+  <div class="tb-card" data-cat="design">
+    <div class="tb-icon">🪟</div>
+    <span class="tb-badge">Design</span>
+    <h3>17. Box Shadow Generator</h3>
+    <p>Atur CSS box-shadow pakai slider, preview langsung.</p>
+    <div class="tb-row">
+      <input type="number" id="tbBsX" value="0" oninput="tbBoxShadow()" placeholder="X">
+      <input type="number" id="tbBsY" value="8" oninput="tbBoxShadow()" placeholder="Y">
+      <input type="number" id="tbBsBlur" value="24" oninput="tbBoxShadow()" placeholder="Blur">
+    </div>
+    <input type="color" id="tbBsColor" value="#4f7cff" oninput="tbBoxShadow()">
+    <div id="tbBsPreview" style="height:60px;border-radius:12px;background:#fff;margin-top:6px;"></div>
+    <div class="tb-out" id="tbBsOut"></div>
+  </div>
+
+  <!-- ===== 18. QR CODE GENERATOR ===== -->
+  <div class="tb-card" data-cat="design">
+    <div class="tb-icon">📱</div>
+    <span class="tb-badge">Design</span>
+    <h3>18. QR Code Generator</h3>
+    <p>Bikin QR Code dari teks atau link, download sebagai PNG.</p>
+    <input type="text" id="tbQrInput" placeholder="https://..." value="https://reptilia06478-collab.github.io/Tiktok-No-Watermark/">
+    <button class="tb-btn" id="tbQrBtn" onclick="tbQR()">📱 Buat QR</button>
+    <div class="tb-qr-wrap" id="tbQrWrap" style="display:none;"></div>
+    <div class="tb-out" id="tbQrOut"></div>
+  </div>
+
+  <!-- ===== 19. BMI CALCULATOR ===== -->
+  <div class="tb-card" data-cat="utility">
+    <div class="tb-icon">⚖️</div>
+    <span class="tb-badge">Utility</span>
+    <h3>19. BMI Calculator</h3>
+    <p>Hitung Body Mass Index (BMI) + kategori (kurus/normal/gemuk).</p>
+    <div class="tb-row">
+      <input type="number" id="tbBmiW" placeholder="Berat (kg)" value="60" min="1" step="0.1">
+      <input type="number" id="tbBmiH" placeholder="Tinggi (cm)" value="170" min="1" step="0.1">
+    </div>
+    <button class="tb-btn" onclick="tbBMI()">⚖️ Hitung BMI</button>
+    <div class="tb-out" id="tbBmiOut"></div>
+  </div>
+
+  <!-- ===== 20. AGE CALCULATOR ===== -->
+  <div class="tb-card" data-cat="utility">
+    <div class="tb-icon">🎂</div>
+    <span class="tb-badge">Utility</span>
+    <h3>20. Age Calculator</h3>
+    <p>Hitung umur detail (tahun, bulan, hari) dari tanggal lahir.</p>
+    <input type="date" id="tbAgeDate">
+    <button class="tb-btn" onclick="tbAge()">🎂 Hitung Umur</button>
+    <div class="tb-out" id="tbAgeOut"></div>
+  </div>
+
+  <!-- ===== 21. PASSWORD STRENGTH ===== -->
+  <div class="tb-card" data-cat="utility">
+    <div class="tb-icon">🔒</div>
+    <span class="tb-badge">Utility</span>
+    <h3>21. Password Strength</h3>
+    <p>Cek seberapa kuat password kamu + estimasi waktu crack.</p>
+    <input type="text" id="tbPwInput" placeholder="Ketik password..." oninput="tbPwStrength()">
+    <div class="tb-strength-bar"><div class="tb-strength-fill" id="tbPwFill"></div></div>
+    <div class="tb-out" id="tbPwOut"></div>
+  </div>
+
+  <!-- ===== 22. RANDOM PICKER ===== -->
+  <div class="tb-card" data-cat="utility">
+    <div class="tb-icon">🎲</div>
+    <span class="tb-badge">Utility</span>
+    <h3>22. Random Picker</h3>
+    <p>Pilih satu item acak dari daftar (satu per baris).</p>
+    <textarea id="tbPickInput" placeholder="Item 1&#10;Item 2&#10;Item 3"></textarea>
+    <button class="tb-btn" onclick="tbPick()">🎲 Pilih Acak</button>
+    <div class="tb-out" id="tbPickOut"></div>
+  </div>
+
+  <!-- ===== 23. STOPWATCH & TIMER ===== -->
+  <div class="tb-card" data-cat="utility">
+    <div class="tb-icon">⏱️</div>
+    <span class="tb-badge">Utility</span>
+    <h3>23. Stopwatch & Timer</h3>
+    <p>Stopwatch dengan start/stop/reset, plus timer countdown.</p>
+    <div class="tb-timer-display" id="tbTimerDisplay">00:00.00</div>
+    <div class="tb-row">
+      <button class="tb-btn" id="tbTimerBtn" onclick="tbTimerToggle()">▶️ Start</button>
+      <button class="tb-btn secondary" onclick="tbTimerReset()">🔄 Reset</button>
+    </div>
+    <div class="tb-row">
+      <input type="number" id="tbCountdownMin" placeholder="Menit" value="1" min="0">
+      <button class="tb-btn" id="tbCdBtn" onclick="tbCountdownToggle()">⏳ Timer</button>
+    </div>
+    <div class="tb-out" id="tbTimerOut"></div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-links">
+    <a href="index.html">Beranda</a>
+    <a href="games.html">Games</a>
+    <a href="tools.html">Tools Lama</a>
+    <a href="tools-Baru.html">Tools Baru</a>
+  </div>
+  <div class="dev-credit">👨‍💻 Developer: <span>PANN</span></div>
+  <div>© <span id="tbYear">2026</span> Tiv Tools Baru · Dibuat dengan ❤️</div>
+</footer>
+
+<div class="toast" id="tbToast"></div>
+
+<!-- ===== LIBRARY CDN ===== -->
+<!-- Markdown -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- QR Code -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<!-- PDF-lib (Image → PDF) -->
+<script src="https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<!-- PDF.js (PDF → Image) -->
+<script src="https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.min.js"></script>
+<!-- FFmpeg (Video/Audio trim & GIF) -->
+<script src="https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/ffmpeg.min.js"></script>
+
+<!-- ===== TOOLS-BARU LOGIC ===== -->
+<script>
+/* ============================================================
+   TIV TOOLS BARU — logic
+   ============================================================ */
+const $tb = (id) => document.getElementById(id);
+
+/* ---------- TOAST ---------- */
+function tbToast(msg, dur) {
+  dur = dur || 2200;
+  const t = $tb('tbToast');
+  if (!t) return;
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._tm);
+  t._tm = setTimeout(() => t.classList.remove('show'), dur);
+}
+
+/* ---------- FILTER ---------- */
+function tbFilter(cat) {
+  document.querySelectorAll('.tb-filter-btn').forEach(b =>
+    b.classList.toggle('active', b.dataset.cat === cat)
+  );
+  document.querySelectorAll('.tb-card').forEach(card => {
+    const show = cat === 'all' || card.dataset.cat === cat;
+    card.classList.toggle('tb-hidden', !show);
+  });
+}
+
+/* ---------- HELPER: format bytes ---------- */
+function tbBytes(b) {
+  if (b < 1024) return b + ' B';
+  if (b < 1024*1024) return (b/1024).toFixed(1) + ' KB';
+  return (b/1024/1024).toFixed(2) + ' MB';
+}
+
+/* ---------- HELPER: download blob ---------- */
+function tbDownload(blob, name) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 500);
+}
+
+/* ============================================================
+   1. VIDEO TRIMMER (ffmpeg.wasm)
+   ============================================================ */
+async function tbTrim() {
+  const file = $tb('tbTrimFile').files[0];
+  const start = parseFloat($tb('tbTrimStart').value) || 0;
+  const end = parseFloat($tb('tbTrimEnd').value) || 5;
+  const out = $tb('tbTrimOut');
+  const btn = $tb('tbTrimBtn');
+  if (!file) { tbToast('❌ Pilih video dulu'); return; }
+  if (end <= start) { tbToast('❌ Waktu akhir harus > mulai'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Memuat ffmpeg... (bisa 10-30 detik pertama kali)';
+
+  try {
+    const { FFmpeg } = FFmpegWASM || window.FFmpegWASM || {};
+    let ffmpeg = window._tbFFmpeg;
+    if (!ffmpeg) {
+      ffmpeg = new FFmpeg();
+      window._tbFFmpeg = ffmpeg;
+      await ffmpeg.load({
+        coreURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+        wasmURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm'
+      });
+    }
+    const ext = file.name.split('.').pop().toLowerCase();
+    const inName = 'input.' + ext;
+    const outName = 'output.' + (ext === 'webm' ? 'webm' : 'mp4');
+    const data = new Uint8Array(await file.arrayBuffer());
+    await ffmpeg.writeFile(inName, data);
+    out.innerHTML = '<span class="tb-loading"></span> Memotong video...';
+    await ffmpeg.exec(['-i', inName, '-ss', String(start), '-to', String(end), '-c', 'copy', outName]);
+    const result = await ffmpeg.readFile(outName);
+    const blob = new Blob([result.buffer], { type: 'video/' + (outName.endsWith('webm') ? 'webm' : 'mp4') });
+    out.innerHTML = `✅ Selesai! Ukuran: ${tbBytes(blob.size)}<br><button class="tb-btn small" onclick="tbDownload(window._tbLastBlob,'tiv_trim.${outName.split('.').pop()}')">⬇️ Download</button>`;
+    window._tbLastBlob = blob;
+  } catch (e) {
+    out.textContent = '❌ Error: ' + (e.message || e);
+  }
+  btn.disabled = false;
+}
+
+/* ============================================================
+   2. VIDEO → GIF (ffmpeg.wasm)
+   ============================================================ */
+async function tbVideoToGif() {
+  const file = $tb('tbGifFile').files[0];
+  const fps = parseInt($tb('tbGifFps').value) || 10;
+  const width = parseInt($tb('tbGifWidth').value) || 320;
+  const out = $tb('tbGifOut');
+  const btn = $tb('tbGifBtn');
+  if (!file) { tbToast('❌ Pilih video dulu'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Memuat ffmpeg...';
+
+  try {
+    const { FFmpeg } = FFmpegWASM || window.FFmpegWASM || {};
+    let ffmpeg = window._tbFFmpeg;
+    if (!ffmpeg) {
+      ffmpeg = new FFmpeg();
+      window._tbFFmpeg = ffmpeg;
+      await ffmpeg.load({
+        coreURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+        wasmURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm'
+      });
+    }
+    const ext = file.name.split('.').pop().toLowerCase();
+    const inName = 'input.' + ext;
+    const data = new Uint8Array(await file.arrayBuffer());
+    await ffmpeg.writeFile(inName, data);
+    out.innerHTML = '<span class="tb-loading"></span> Membuat GIF...';
+    // Batasi durasi 5 detik pertama biar gak berat
+    await ffmpeg.exec([
+      '-i', inName, '-t', '5', '-vf', `fps=${fps},scale=${width}:-1:flags=lanczos`,
+      '-loop', '0', 'output.gif'
+    ]);
+    const result = await ffmpeg.readFile('output.gif');
+    const blob = new Blob([result.buffer], { type: 'image/gif' });
+    out.innerHTML = `✅ Selesai! Ukuran: ${tbBytes(blob.size)}<br><button class="tb-btn small" onclick="tbDownload(window._tbLastGif,'tiv_anim.gif')">⬇️ Download GIF</button>`;
+    window._tbLastGif = blob;
+  } catch (e) {
+    out.textContent = '❌ Error: ' + (e.message || e);
+  }
+  btn.disabled = false;
+}
+
+/* ============================================================
+   3. AUDIO CUTTER (ffmpeg.wasm)
+   ============================================================ */
+async function tbAudioCut() {
+  const file = $tb('tbAudioFile').files[0];
+  const start = parseFloat($tb('tbAudioStart').value) || 0;
+  const end = parseFloat($tb('tbAudioEnd').value) || 10;
+  const out = $tb('tbAudioOut');
+  const btn = $tb('tbAudioBtn');
+  if (!file) { tbToast('❌ Pilih audio dulu'); return; }
+  if (end <= start) { tbToast('❌ Waktu akhir harus > mulai'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Memuat ffmpeg...';
+
+  try {
+    const { FFmpeg } = FFmpegWASM || window.FFmpegWASM || {};
+    let ffmpeg = window._tbFFmpeg;
+    if (!ffmpeg) {
+      ffmpeg = new FFmpeg();
+      window._tbFFmpeg = ffmpeg;
+      await ffmpeg.load({
+        coreURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.js',
+        wasmURL: 'https://cdn.jsdelivr.net/npm/@ffmpeg/core@0.12.6/dist/umd/ffmpeg-core.wasm'
+      });
+    }
+    const ext = file.name.split('.').pop().toLowerCase();
+    const inName = 'input.' + ext;
+    const outName = 'output.' + (ext === 'wav' ? 'wav' : 'mp3');
+    const data = new Uint8Array(await file.arrayBuffer());
+    await ffmpeg.writeFile(inName, data);
+    out.innerHTML = '<span class="tb-loading"></span> Memotong audio...';
+    await ffmpeg.exec(['-i', inName, '-ss', String(start), '-to', String(end), outName]);
+    const result = await ffmpeg.readFile(outName);
+    const mime = outName.endsWith('wav') ? 'audio/wav' : 'audio/mpeg';
+    const blob = new Blob([result.buffer], { type: mime });
+    out.innerHTML = `✅ Selesai! Ukuran: ${tbBytes(blob.size)}<br><button class="tb-btn small" onclick="tbDownload(window._tbLastAudio,'tiv_audio.${outName.split('.').pop()}')">⬇️ Download</button>`;
+    window._tbLastAudio = blob;
+  } catch (e) {
+    out.textContent = '❌ Error: ' + (e.message || e);
+  }
+  btn.disabled = false;
+}
+
+/* ============================================================
+   4. IMAGE COMPRESSOR (Canvas)
+   ============================================================ */
+function tbCompress() {
+  const file = $tb('tbCompFile').files[0];
+  const quality = parseFloat($tb('tbCompQuality').value) || 0.7;
+  const out = $tb('tbCompOut');
+  if (!file) { tbToast('❌ Pilih gambar dulu'); return; }
+
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.width;
+    canvas.height = img.height;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob((blob) => {
+      out.innerHTML = `✅ Selesai!<br>Asli: ${tbBytes(file.size)} → Kompres: ${tbBytes(blob.size)} (${Math.round((1 - blob.size/file.size)*100)}% lebih kecil)<br><button class="tb-btn small" onclick="tbDownload(window._tbLastComp,'tiv_compressed.jpg')">⬇️ Download</button>`;
+      window._tbLastComp = blob;
+    }, 'image/jpeg', quality);
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+/* ============================================================
+   5. IMAGE RESIZER (Canvas)
+   ============================================================ */
+function tbResize() {
+  const file = $tb('tbResizeFile').files[0];
+  const w = parseInt($tb('tbResizeW').value) || 800;
+  const h = parseInt($tb('tbResizeH').value) || 600;
+  const out = $tb('tbResizeOut');
+  if (!file) { tbToast('❌ Pilih gambar dulu'); return; }
+
+  const img = new Image();
+  img.onload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0, w, h);
+    canvas.toBlob((blob) => {
+      out.innerHTML = `✅ Selesai! ${w}×${h}px (${tbBytes(blob.size)})<br><button class="tb-btn small" onclick="tbDownload(window._tbLastResize,'tiv_resized.png')">⬇️ Download</button>`;
+      window._tbLastResize = blob;
+    }, 'image/png');
+  };
+  img.src = URL.createObjectURL(file);
+}
+
+/* ============================================================
+   6. IMAGE → PDF (pdf-lib)
+   ============================================================ */
+async function tbImg2Pdf() {
+  const files = $tb('tbImg2PdfFile').files;
+  const out = $tb('tbImg2PdfOut');
+  const btn = $tb('tbImg2PdfBtn');
+  if (!files.length) { tbToast('❌ Pilih minimal 1 gambar'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Memproses...';
+
+  try {
+    const { PDFDocument } = PDFLib;
+    const pdfDoc = await PDFDocument.create();
+    for (const file of files) {
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      let img;
+      if (file.type === 'image/png') img = await pdfDoc.embedPng(bytes);
+      else img = await pdfDoc.embedJpg(bytes);
+      const page = pdfDoc.addPage([img.width, img.height]);
+      page.drawImage(img, { x: 0, y: 0, width: img.width, height: img.height });
+    }
+    const pdfBytes = await pdfDoc.save();
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    out.innerHTML = `✅ Selesai! ${files.length} gambar → PDF (${tbBytes(blob.size)})<br><button class="tb-btn small" onclick="tbDownload(window._tbLastPdf,'tiv_images.pdf')">⬇️ Download PDF</button>`;
+    window._tbLastPdf = blob;
+  } catch (e) {
+    out.textContent = '❌ Error: ' + (e.message || e);
+  }
+  btn.disabled = false;
+}
+
+/* ============================================================
+   7. PDF → IMAGE (pdf.js)
+   ============================================================ */
+async function tbPdf2Img() {
+  const file = $tb('tbPdf2ImgFile').files[0];
+  const out = $tb('tbPdf2ImgOut');
+  const btn = $tb('tbPdf2ImgBtn');
+  if (!file) { tbToast('❌ Pilih PDF dulu'); return; }
+
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Memproses PDF...';
+
+  try {
+    const pdfjsLib = window['pdfjs-dist/build/pdf'] || window.pdfjsLib;
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js';
+    const bytes = new Uint8Array(await file.arrayBuffer());
+    const pdf = await pdfjsLib.getDocument({ data: bytes }).promise;
+    let html = `✅ PDF punya ${pdf.numPages} halaman:<br>`;
+    window._tbPdfPages = [];
+    for (let i = 1; i <= pdf.numPages; i++) {
+      const page = await pdf.getPage(i);
+      const viewport = page.getViewport({ scale: 1.5 });
+      const canvas = document.createElement('canvas');
+      canvas.width = viewport.width;
+      canvas.height = viewport.height;
+      const ctx = canvas.getContext('2d');
+      await page.render({ canvasContext: ctx, viewport }).promise;
+      canvas.toBlob((blob) => {
+        window._tbPdfPages.push(blob);
+        const idx = window._tbPdfPages.length - 1;
+        out.innerHTML = html + `Halaman ${i} siap. <button class="tb-btn small" onclick="tbDownload(window._tbPdfPages[${idx}],'tiv_page_${i}.png')">⬇️ Halaman ${i}</button>`;
+      }, 'image/png');
+    }
+  } catch (e) {
+    out.textContent = '❌ Error: ' + (e.message || e);
+  }
+  btn.disabled = false;
+}
+
+/* ============================================================
+   8. SCREEN RECORDER (MediaRecorder)
+   ============================================================ */
+let _tbRecorder = null, _tbRecChunks = [], _tbRecStream = null;
+async function tbToggleRecord() {
+  const btn = $tb('tbRecBtn');
+  const out = $tb('tbRecOut');
+  if (_tbRecorder && _tbRecorder.state === 'recording') {
+    _tbRecorder.stop();
+    btn.textContent = '🔴 Mulai Rekam';
+    return;
+  }
+  try {
+    _tbRecStream = await navigator.mediaDevices.getDisplayMedia({ video: true, audio: true });
+    _tbRecChunks = [];
+    _tbRecorder = new MediaRecorder(_tbRecStream, { mimeType: 'video/webm' });
+    _tbRecorder.ondataavailable = (e) => { if (e.data.size) _tbRecChunks.push(e.data); };
+    _tbRecorder.onstop = () => {
+      const blob = new Blob(_tbRecChunks, { type: 'video/webm' });
+      out.innerHTML = `✅ Rekaman selesai (${tbBytes(blob.size)})<br><button class="tb-btn small" onclick="tbDownload(window._tbLastRec,'tiv_record.webm')">⬇️ Download</button>`;
+      window._tbLastRec = blob;
+      _tbRecStream.getTracks().forEach(t => t.stop());
+      _tbRecorder = null;
+    };
+    _tbRecorder.start();
+    btn.textContent = '⏹ Stop Rekam';
+    out.innerHTML = '<span class="tb-loading"></span> Merekam...';
+  } catch (e) {
+    out.textContent = '❌ Izin ditolak atau tidak didukung: ' + (e.message || e);
+  }
+}
+
+/* ============================================================
+   9. TEXT TO SPEECH (Web Speech API)
+   ============================================================ */
+function tbInitVoices() {
+  const sel = $tb('tbTtsVoice');
+  if (!sel || !window.speechSynthesis) return;
+  const voices = speechSynthesis.getVoices();
+  sel.innerHTML = voices.map((v, i) =>
+    `<option value="${i}">${v.name} (${v.lang})</option>`
+  ).join('');
+}
+if (window.speechSynthesis) {
+  speechSynthesis.onvoiceschanged = tbInitVoices;
+  setTimeout(tbInitVoices, 300);
+}
+function tbTTS() {
+  const text = $tb('tbTtsText').value;
+  const sel = $tb('tbTtsVoice');
+  const rate = parseFloat($tb('tbTtsRate').value) || 1;
+  const out = $tb('tbTtsOut');
+  if (!text.trim()) { tbToast('❌ Ketik teks dulu'); return; }
+  if (!window.speechSynthesis) { out.textContent = '❌ Browser tidak mendukung TTS'; return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.rate = rate;
+  const voices = speechSynthesis.getVoices();
+  if (voices[sel.value]) u.voice = voices[sel.value];
+  speechSynthesis.speak(u);
+  out.textContent = '🔊 Sedang membaca...';
+  u.onend = () => { out.textContent = '✅ Selesai membaca.'; };
+}
+function tbStopTTS() {
+  if (window.speechSynthesis) speechSynthesis.cancel();
+  const out = $tb('tbTtsOut');
+  if (out) out.textContent = '⏹ Dihentikan.';
+}
+
+/* ============================================================
+   10. SPEECH TO TEXT (Web Speech API)
+   ============================================================ */
+let _tbSTT = null, _tbSTTOn = false;
+function tbToggleSTT() {
+  const btn = $tb('tbSttBtn');
+  const out = $tb('tbSttOut');
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { out.textContent = '❌ Browser tidak mendukung. Pakai Chrome/Edge.'; return; }
+  if (_tbSTTOn) {
+    _tbSTT.stop();
+    _tbSTTOn = false;
+    btn.textContent = '🎤 Mulai Rekam';
+    return;
+  }
+  _tbSTT = new SR();
+  _tbSTT.lang = 'id-ID';
+  _tbSTT.continuous = true;
+  _tbSTT.interimResults = true;
+  out.textContent = '🎤 Mendengarkan...';
+  _tbSTT.onresult = (e) => {
+    let final = '', interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if (e.results[i].isFinal) final += t;
+      else interim += t;
+    }
+    out.textContent = (final || '') + (interim ? ' [' + interim + ']' : '');
+  };
+  _tbSTT.onerror = (e) => { out.textContent = '❌ Error: ' + e.error; };
+  _tbSTT.onend = () => {
+    _tbSTTOn = false;
+    btn.textContent = '🎤 Mulai Rekam';
+  };
+  _tbSTT.start();
+  _tbSTTOn = true;
+  btn.textContent = '⏹ Stop Rekam';
+}
+
+/* ============================================================
+   11. MARKDOWN PREVIEW
+   ============================================================ */
+function tbMd() {
+  const input = $tb('tbMdInput');
+  const preview = $tb('tbMdPreview');
+  if (!input || !preview) return;
+  try {
+    preview.innerHTML = marked.parse(input.value || '');
+  } catch (e) {
+    preview.textContent = '❌ Error: ' + e.message;
+  }
+}
+document.addEventListener('DOMContentLoaded', () => {
+  const md = $tb('tbMdInput');
+  if (md) {
+    md.addEventListener('input', tbMd);
+    tbMd();
+  }
+});
+
+/* ============================================================
+   12. JSON FORMATTER
+   ============================================================ */
+function tbJsonFmt() {
+  const input = $tb('tbJsonInput').value;
+  const out = $tb('tbJsonOut');
+  try {
+    out.textContent = JSON.stringify(JSON.parse(input), null, 2);
+  } catch (e) {
+    out.textContent = '❌ JSON tidak valid: ' + e.message;
+  }
+}
+
+/* ============================================================
+   13. BASE64 ENCODER / DECODER
+   ============================================================ */
+function tbB64Encode() {
+  const input = $tb('tbB64Input').value;
+  const out = $tb('tbB64Out');
+  try { out.textContent = btoa(unescape(encodeURIComponent(input))); }
+  catch (e) { out.textContent = '❌ Error: ' + e.message; }
+}
+function tbB64Decode() {
+  const input = $tb('tbB64Input').value;
+  const out = $tb('tbB64Out');
+  try { out.textContent = decodeURIComponent(escape(atob(input))); }
+  catch (e) { out.textContent = '❌ Base64 tidak valid'; }
+}
+
+/* ============================================================
+   14. CASE CONVERTER
+   ============================================================ */
+function tbCase(mode) {
+  const input = $tb('tbCaseInput').value;
+  const out = $tb('tbCaseOut');
+  let result = input;
+  if (mode === 'upper') result = input.toUpperCase();
+  else if (mode === 'lower') result = input.toLowerCase();
+  else if (mode === 'title') result = input.replace(/\w\S*/g, w => w.charAt(0).toUpperCase() + w.substr(1).toLowerCase());
+  else if (mode === 'sentence') result = input.charAt(0).toUpperCase() + input.slice(1).toLowerCase();
+  out.textContent = result;
+}
+
+/* ============================================================
+   15. COLOR PALETTE GENERATOR
+   ============================================================ */
+function tbPalette() {
+  const base = $tb('tbPaletteBase').value;
+  const grid = $tb('tbPaletteGrid');
+  const out = $tb('tbPaletteOut');
+  const r = parseInt(base.slice(1,3), 16);
+  const g = parseInt(base.slice(3,5), 16);
+  const b = parseInt(base.slice(5,7), 16);
+  const hex = (n) => n.toString(16).padStart(2,'0');
+  const shades = [];
+  for (let i = -2; i <= 2; i++) {
+    const f = 1 + i * 0.2;
+    const rr = Math.min(255, Math.max(0, Math.round(r * f)));
+    const gg = Math.min(255, Math.max(0, Math.round(g * f)));
+    const bb = Math.min(255, Math.max(0, Math.round(b * f)));
+    shades.push('#' + hex(rr) + hex(gg) + hex(bb));
+  }
+  grid.innerHTML = shades.map(s =>
+    `<div class="tb-swatch" style="background:${s}" title="${s}" onclick="navigator.clipboard.writeText('${s}');tbToast('📋 ${s} tersalin!')"></div>`
+  ).join('');
+  out.textContent = shades.join('  ·  ');
+}
+document.addEventListener('DOMContentLoaded', () => { if ($tb('tbPaletteBase')) tbPalette(); });
+
+/* ============================================================
+   16. GRADIENT GENERATOR
+   ============================================================ */
+function tbGradient() {
+  const a = $tb('tbGradA').value;
+  const b = $tb('tbGradB').value;
+  const dir = $tb('tbGradDir').value;
+  const css = `linear-gradient(${dir}, ${a}, ${b})`;
+  $tb('tbGradPreview').style.background = css;
+  $tb('tbGradOut').textContent = `background: ${css};`;
+}
+document.addEventListener('DOMContentLoaded', () => { if ($tb('tbGradA')) tbGradient(); });
+
+/* ============================================================
+   17. BOX SHADOW GENERATOR
+   ============================================================ */
+function tbBoxShadow() {
+  const x = $tb('tbBsX').value || 0;
+  const y = $tb('tbBsY').value || 0;
+  const blur = $tb('tbBsBlur').value || 0;
+  const color = $tb('tbBsColor').value;
+  const css = `${x}px ${y}px ${blur}px ${color}`;
+  $tb('tbBsPreview').style.boxShadow = css;
+  $tb('tbBsOut').textContent = `box-shadow: ${css};`;
+}
+document.addEventListener('DOMContentLoaded', () => { if ($tb('tbBsX')) tbBoxShadow(); });
+
+/* ============================================================
+   18. QR CODE GENERATOR (qrcode.js)
+   ============================================================ */
+function tbQR() {
+  const text = $tb('tbQrInput').value.trim();
+  const wrap = $tb('tbQrWrap');
+  const out = $tb('tbQrOut');
+  const btn = $tb('tbQrBtn');
+  if (!text) { tbToast('❌ Isi teks/link dulu'); return; }
+  btn.disabled = true;
+  out.innerHTML = '<span class="tb-loading"></span> Membuat QR...';
+  try {
+    if (!window.QRCode) throw new Error('Library QR belum siap, coba lagi.');
+    wrap.style.display = 'flex';
+    wrap.innerHTML = '';
+    window.QRCode.toCanvas(text, { width: 220, margin: 2 }, (err, canvas) => {
+      if (err) throw err;
+      wrap.appendChild(canvas);
+      out.innerHTML = `✅ QR untuk: ${text}<br><button class="tb-btn small" onclick="tbDownloadQr()">⬇️ Download PNG</button>`;
+    });
+  } catch (e) {
+    out.textContent = '❌ Error: ' + e.message;
+  }
+  btn.disabled = false;
+}
+function tbDownloadQr() {
+  const canvas = $tb('tbQrWrap').querySelector('canvas');
+  if (!canvas) return;
+  canvas.toBlob((blob) => tbDownload(blob, 'tiv_qr.png'), 'image/png');
+}
+
+/* ============================================================
+   19. BMI CALCULATOR
+   ============================================================ */
+function tbBMI() {
+  const w = parseFloat($tb('tbBmiW').value);
+  const h = parseFloat($tb('tbBmiH').value) / 100;
+  const out = $tb('tbBmiOut');
+  if (!w || !h) { out.textContent = '❌ Isi berat & tinggi dulu'; return; }
+  const bmi = w / (h * h);
+  let cat = '';
+  if (bmi < 18.5) cat = 'Kurus (Underweight)';
+  else if (bmi < 25) cat = 'Normal (Ideal)';
+  else if (bmi < 30) cat = 'Gemuk (Overweight)';
+  else cat = 'Obesitas';
+  out.innerHTML = `BMI kamu: <strong style="color:#93b4ff;font-size:16px;">${bmi.toFixed(1)}</strong><br>Kategori: <strong>${cat}</strong>`;
+}
+
+/* ============================================================
+   20. AGE CALCULATOR
+   ============================================================ */
+function tbAge() {
+  const d = $tb('tbAgeDate').value;
+  const out = $tb('tbAgeOut');
+  if (!d) { out.textContent = '❌ Pilih tanggal lahir dulu'; return; }
+  const birth = new Date(d);
+  const now = new Date();
+  let y = now.getFullYear() - birth.getFullYear();
+  let m = now.getMonth() - birth.getMonth();
+  let day = now.getDate() - birth.getDate();
+  if (day < 0) { m--; day += new Date(now.getFullYear(), now.getMonth(), 0).getDate(); }
+  if (m < 0) { y--; m += 12; }
+  const totalDays = Math.floor((now - birth) / 86400000);
+  out.innerHTML = `Umur kamu: <strong style="color:#93b4ff;">${y} tahun, ${m} bulan, ${day} hari</strong><br>Total: ${totalDays.toLocaleString('id-ID')} hari`;
+}
+
+/* ============================================================
+   21. PASSWORD STRENGTH
+   ============================================================ */
+function tbPwStrength() {
+  const pw = $tb('tbPwInput').value;
+  const fill = $tb('tbPwFill');
+  const out = $tb('tbPwOut');
+  let score = 0;
+  if (pw.length >= 8) score++;
+  if (pw.length >= 12) score++;
+  if (/[a-z]/.test(pw)) score++;
+  if (/[A-Z]/.test(pw)) score++;
+  if (/[0-9]/.test(pw)) score++;
+  if (/[^A-Za-z0-9]/.test(pw)) score++;
+  const pct = Math.min(100, (score / 6) * 100);
+  let label = '', color = '';
+  if (score <= 2) { label = 'Lemah'; color = '#ef4444'; }
+  else if (score <= 4) { label = 'Sedang'; color = '#f59e0b'; }
+  else { label = 'Kuat'; color = '#22c55e'; }
+  fill.style.width = pct + '%';
+  fill.style.background = color;
+  out.innerHTML = `Kekuatan: <strong style="color:${color};">${label}</strong> (${score}/6)`;
+}
+
+/* ============================================================
+   22. RANDOM PICKER
+   ============================================================ */
+function tbPick() {
+  const raw = $tb('tbPickInput').value;
+  const out = $tb('tbPickOut');
+  const items = raw.split('\n').map(s => s.trim()).filter(Boolean);
+  if (!items.length) { out.textContent = '❌ Isi minimal 1 item'; return; }
+  const pick = items[Math.floor(Math.random() * items.length)];
+  out.innerHTML = `🎲 Terpilih: <strong style="color:#93b4ff;font-size:16px;">${pick}</strong>`;
+}
+
+/* ============================================================
+   23. STOPWATCH & TIMER
+   ============================================================ */
+let _tbTimerRunning = false, _tbTimerStart = 0, _tbTimerElapsed = 0, _tbTimerInt = null;
+function tbTimerToggle() {
+  const btn = $tb('tbTimerBtn');
+  const disp = $tb('tbTimerDisplay');
+  if (_tbTimerRunning) {
+    _tbTimerRunning = false;
+    _tbTimerElapsed += Date.now() - _tbTimerStart;
+    clearInterval(_tbTimerInt);
+    btn.textContent = '▶️ Start';
+  } else {
+    _tbTimerRunning = true;
+    _tbTimerStart = Date.now();
+    _tbTimerInt = setInterval(() => {
+      const total = _tbTimerElapsed + (Date.now() - _tbTimerStart);
+      const ms = total % 1000;
+      const s = Math.floor(total / 1000) % 60;
+      const m = Math.floor(total / 60000);
+      disp.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${String(Math.floor(ms/10)).padStart(2,'0')}`;
+    }, 30);
+    btn.textContent = '⏸ Stop';
+  }
+}
+function tbTimerReset() {
+  _tbTimerRunning = false;
+  _tbTimerElapsed = 0;
+  clearInterval(_tbTimerInt);
+  $tb('tbTimerDisplay').textContent = '00:00.00';
+  $tb('tbTimerBtn').textContent = '▶️ Start';
+}
+
+let _tbCdRunning = false, _tbCdInt = null, _tbCdRemain = 0;
+function tbCountdownToggle() {
+  const btn = $tb('tbCdBtn');
+  const out = $tb('tbTimerOut');
+  if (_tbCdRunning) {
+    clearInterval(_tbCdInt);
+    _tbCdRunning = false;
+    btn.textContent = '⏳ Timer';
+    out.textContent = '⏹ Timer dihentikan.';
+    return;
+  }
+  const min = parseFloat($tb('tbCountdownMin').value) || 1;
+  _tbCdRemain = Math.round(min * 60);
+  _tbCdRunning = true;
+  btn.textContent = '⏹ Stop';
+  _tbCdInt = setInterval(() => {
+    if (_tbCdRemain <= 0) {
+      clearInterval(_tbCdInt);
+      _tbCdRunning = false;
+      btn.textContent = '⏳ Timer';
+      out.innerHTML = '⏰ <strong style="color:#ef4444;">WAKTU HABIS!</strong>';
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = ctx.createOscillator();
+        const g = ctx.createGain();
+        o.connect(g); g.connect(ctx.destination);
+        o.frequency.value = 880; g.gain.value = 0.1;
+        o.start(); o.stop(ctx.currentTime + 0.5);
+      } catch(e) {}
+      return;
+    }
+    _tbCdRemain--;
+    const m = Math.floor(_tbCdRemain / 60);
+    const s = _tbCdRemain % 60;
+    out.textContent = `⏳ Sisa: ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  }, 1000);
+  out.textContent = `⏳ Timer ${min} menit dimulai...`;
+}
+
+/* ============================================================
+   INIT
+   ============================================================ */
+document.addEventListener('DOMContentLoaded', () => {
+  const yr = $tb('tbYear');
+  if (yr) yr.textContent = new Date().getFullYear();
+
+  // Init default tanggal umur
+  const ageDate = $tb('tbAgeDate');
+  if (ageDate) ageDate.value = '2000-01-01';
+
+  // Init palette, gradient, box shadow
+  if ($tb('tbPaletteBase')) tbPalette();
+  if ($tb('tbGradA')) tbGradient();
+  if ($tb('tbBsX')) tbBoxShadow();
+
+  // Expose buat tombol download inline
+  window.tbDownload = tbDownload;
+  window.tbDownloadQr = tbDownloadQr;
+  window.tbToast = tbToast;
+});
+</script>
+
+</body>
+  </html>
