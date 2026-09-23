@@ -1,5 +1,5 @@
 /* Tiv Downloader — Service Worker */
-const CACHE_NAME = 'tiv-v11';
+const CACHE_NAME = 'tiv-v12';
 
 const ASSETS = [
   './',
@@ -15,7 +15,8 @@ const ASSETS = [
   './lib/pdf.worker.min.js',
   './lib/ffmpeg.min.js',
   './lib/ffmpeg-core.js',
-  './lib/ffmpeg-core.wasm'
+  './lib/ffmpeg-core.wasm', 
+  "./assets/Dev.png', 
 ];
 
 self.addEventListener('install', (e) => {
