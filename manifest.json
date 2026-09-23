@@ -14,13 +14,13 @@
   {
     "src": "assets/Dev-192x192.png",
     "sizes": "192x192",
-    "type": "assets/Dev.png",
+    "type": "image/png",
     "purpose": "any maskable"
   },
   {
     "src": "assets/Dev-512x512.png",
     "sizes": "512x512",
-    "type": "assets/Dev.png",
+    "type": "image/png",
     "purpose": "any maskable"
   }
   ]
